@@ -1,1 +1,1 @@
-echo "# AdaptiveLearningPlatform" 
+AdaptiveLearningPlatform
