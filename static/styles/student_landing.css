@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+body
+{
+    font-family: 'Poppins',sans-serif;
+    margin:0px;
+    padding:0px;
+    background:url(../img/back.jpg);
+    
+}
+
+header
+{
+    position: relative;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.top-bar
+{
+    overflow:hidden;
+}
+.head-text
+{
+    color: #000000;
+    height: 60px;
+    font-size: 36px;
+    line-height:60px;
+    margin: 10px;
+    padding: 0 20px;
+    background: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+    float:left;
+    font-weight: 700;
+    text-decoration: none;
+}
+nav
+{
+    float:right;
+    overflow:hidden;
+    max-width: 1200px;
+    
+}
+nav ul
+{
+    list-style: none;
+    margin:5px;
+    
+}
+nav ul li /*username*/
+{
+    display:block;
+    cursor:pointer;
+    font-size:20px;
+    line-height:60px;
+    padding: 0 20px;
+    float:left;
+}
+nav ul li ul li     
+{
+    display:none;
+    text-decoration: none;
+}
+nav ul li a:hover
+{
+    background: black;
+    text-decoration: none;
+    color:white;
+}
+nav ul li:hover ul li  /*on hover will show logout*/
+{
+    display:block;
+    color:white;
+    text-align: left;    
+    text-decoration:none;
+}
+
+nav ul li a
+{
+    margin: 10px 15px;
+    padding:10px 15px;
+    text-decoration:none;
+    color:black;
+    margin:10px;
+}
+
+.container
+{
+overflow:hidden;
+}
+.container section
+{
+    margin: 100px;
+    height: 60vh;
+    background:#0000;
+}
+.container section h1
+{
+    margin-left:220px;
+    padding:0;
+    color:#ddd;
+    position: absolute;
+    top:50%;
+    transform: translateY(-30%);
+    text-align: center;
+    font-size:5em;
+    font-family:'Poppins',sans-serif;
+    letter-spacing: 0.2em;
+    
+
+}
+.container section video
+{
+    
+    height: 400px;
+    object-fit:cover;
+    transform: translateY(1%);
+    width: 100%;
+    opacity:1;
+    overflow:hidden;
+}
+.container section h1 span
+{
+    display: inline-block;
+    opacity: 0;
+    animation: animate 1s linear forwards;
+}
+@keyframes animate
+{
+    0%
+    {
+        opacity:0;
+        transform: rotateY(90deg);
+        filter:blur(5px);
+    }
+    100%
+    {
+        opacity:1;
+        transform:rotate(0deg);
+        filter:blur(0);
+
+    }
+}
+.container h1 span:nth-child(1)
+{
+    animation-delay: 1s;
+}
+.container h1 span:nth-child(2)
+{
+    animation-delay: 1.5s;
+}
+.container h1 span:nth-child(3)
+{
+    animation-delay: 2s;
+}
+.container h1 span:nth-child(4)
+{
+    animation-delay: 2.5s;
+}
+.container h1 span:nth-child(5)
+{
+    animation-delay: 3s;
+}
+.container h1 span:nth-child(6)
+{
+    animation-delay: 3.75s;
+}
+.container h1 span:nth-child(7)
+{
+    animation-delay: 4.25s;
+}
+.separator
+{
+    margin: 30px 70px 0px 70px;
+    background: white;
+    justify-content: center;
+    transform:translateY(30px);
+    opacity: 1.2;
+    border-radius: 4px;
+    letter-spacing: 3px;
+
+}
+.separator p
+{
+    padding: 15px;
+    font-size: 30px;
+    font-weight: 600;
+    color:black;
+    
+}
+.img-list
+{
+    width:1200px;
+    min-height: 300px;
+    
+    margin: 0px auto 0;
+    display: flex;
+    flex-direction: row;
+    
+}
+.img-list h1
+{
+    text-align : center;
+    font-size: 30px;
+    line-height: 50px;
+}
+.img-list .box
+{
+    position: relative;
+    width: 300px;
+    height:300px;
+    background: #ff0; 
+    margin:10px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+.img-list .box .img-box
+{
+    position: relative;
+    overflow:hidden;
+}
+.img-list .box .img-box img
+{
+    max-width: 100%;
+    height: 300px;
+    transition: transform 2s;
+}
+.img-list .box:hover .img-box img
+{
+    transform: scale(1.2);
+}
+.img-list .box .img-text
+{
+    color:white;
+    position: absolute;
+    top:10px;
+    right:10px;
+    bottom:10px;
+    left:10px;
+    background: rgba(0,0,0,0.8);
+    transform: scaleY(0);
+    transition: transform 0.5s;
+}
+.img-list .box:hover .img-text
+{
+    transform:scaleY(1);
+}
+.img-list .box .img-text .content
+{
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    text-align: center;
+    padding:15px;
+    color:white;    
+}
+.img-list .box .img-text .content h2
+{
+    margin:0;
+    padding:0;
+    font-size:20px;
+    font-weight:600;
+}
+.img-list .box .img-text .content p
+{
+    margin:20px 0 0;
+    padding:0;
+    
+}
+#footer
+{
+    background: white;
+    color:black;
+    margin:10px;
+    padding:5px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    
+}

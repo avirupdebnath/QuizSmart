@@ -1,0 +1,154 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+body{
+    margin: 0;
+    padding: 0;
+    font-family:sans-serif;
+    background: url(../img/back.jpg) no-repeat;
+    background-size: cover;
+}
+header{
+    position: relative;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.container{
+    overflow:hidden;
+}
+.head
+{
+    color: #000000;
+    height: 60px;
+    font-size: 36px;
+    line-height:60px;
+    margin: 10px;
+    padding: 0 20px;
+    background: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+    float:left;
+    font-weight: 700;
+    text-decoration: none;
+}
+nav{
+
+    float:right;
+    overflow: hidden;
+    
+}
+/*.clearfix
+{
+    clear:both;
+}*/
+nav ul
+{
+    margin:10px;
+    padding:5px;
+    
+    list-style:none;
+    display: block;
+    
+}
+nav ul li{
+    font-size: 18px;
+    float:left;
+    list-style: none ;
+    
+       
+}
+nav ul li a
+{
+    display:block; /* to enable cursor over entire a element */
+    margin:5px 5px;
+    padding:5px 20px;
+    text-decoration: none;
+    color: #262626;
+}
+nav ul li ul li{
+    display:none;    
+    clear:both;
+    
+    
+}
+nav ul li:hover ul li
+{
+    display:block;
+    clear: both;
+    
+    
+}
+
+nav ul li a.active, nav ul li a:hover
+{
+    background: #000000;
+    color:#fff;
+    transition: 0.5s;
+}
+.login-box{
+    width: 280px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:white;
+}
+.login-box h1{
+    float:left;
+    font-size: 40px;
+    border-bottom: 4px solid #a7f442;
+    margin-bottom: 50px;
+    padding: 13px 2px ;
+}
+.text-box{
+    color:white;
+    width:100%;
+    overflow:hidden;
+    font-size: 20px;
+    padding: 8px 0px;
+    margin: 8px 0px;
+    border-bottom:1px solid #a7f442;
+}
+
+.text-box i{
+    width:26px;
+    float:left;
+    text-align: center;
+    font-size: 30px;
+}
+
+.text-box input{
+    border:none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 18px;
+    width: 80%;
+    float: left;
+    margin: 8px;
+}
+
+.btn{
+    width:100%;
+    background: none;
+    border: 2px solid #a7f442;
+    color: white;
+    padding: 5px;
+    font-size:  18px;
+    cursor: pointer;
+    margin: 12px 0px;
+}
+
+.new-user-login{
+    font-size: 18px;
+    margin:10px auto;
+    padding:5px auto;
+}
+
+.new-user-login a{
+    cursor:pointer;
+    text-decoration: none;    
+    color: white;
+}   

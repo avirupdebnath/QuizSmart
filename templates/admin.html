@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../static/styles/login_Style.css"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <title >Log In</title>
+</head>
+<body>
+        <header>
+                <div class="container">
+                  <a href="#" class="head">QuizSmart</a>
+                  <div class="menu-toggle"></div>
+                  <nav>
+                      <ul>
+                            <li><a href="#!" >Home</a></li>           
+                            <li><a href="#!">Log In</a>
+                               <ul>
+                                 <li><a href="login">Student Login</a></li>
+                                 <li><a href="admin">Teacher Login</a></li>
+                               </ul>
+                            </li>
+                            <li><a href="#!">About Us</a>                    
+                                  <ul>
+                                     <li><a href="#!">Arindam Roy</a></li>
+                                     <li><a href="#!">Avirup Debnath</a></li>   
+                                  </ul>
+                            </li>
+                      </ul>
+                   </nav>
+                </div>
+             </header>
+    <div class='login-box'>
+        <h1> Admin Portal</h1>
+        <form method="POST">
+            <div class ='text-box'>
+                <i class="fa fa-user-tie" aria-hidden="true"></i>
+                <input type ="text" placeholder="username " name="username" value="">
+            </div>
+
+            <div class='text-box'>
+                <i class="fa fa-lock"></i></i>
+                <input type ="password" placeholder="password" name="password" value="">
+            </div>
+        
+            <input class="btn" type="submit" name="" value="Sign in">
+        </form>
+        <div class="new-user-login">
+            <a href="/admin_sign_up">Not a registered admin ? Get Started</a>
+        </div>
+    </div>
+</body>
+</html> 

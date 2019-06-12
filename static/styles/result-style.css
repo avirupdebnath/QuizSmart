@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+body
+{
+    font-family: 'Poppins', sans-serif;
+
+    margin:0px;
+    padding: 0px;
+    background: url(../img/back.jpg);
+    background-attachment: fixed;
+    
+}
+.ribbon
+{
+    font-size: 22px;
+    color:white;
+    background: purple;
+    padding: 40px;
+    width: 1200px;
+    transform: translateX(-30px);
+    font-weight: 900;
+}
+.ribbon span
+{
+    font-size: 45px;    
+}
+
+.container
+{
+    background: white;
+    margin: 15px 160px;
+    width: 1000px;   
+    padding: 15px;
+    height: 900px;
+    border-radius: 8px;
+    opacity:0.8;
+}
+.wrapper
+{
+    background: black;
+    color:white;
+    opacity:0.9;    
+    margin: 60px 0px;
+    width: 490px;
+    height:330px;   
+    border-radius: 8px;
+}
+.subjectCode, .studentName,.k-index
+{
+    padding: 10px 20px;
+}
+.msg
+{
+ 
+ margin-top: 40px;
+ margin-left: 60px;
+}
+.msg span
+{
+    text-align: center; 
+    font-size: 25px;
+
+}
+.msg img
+{
+    width: 150px;
+    height: 120px;
+    border-radius: 10px;    
+}
+.graph 
+{
+    margin-left: 10px;
+    margin-right: 30px; 
+    margin-bottom:0;
+    transform: translateY(-390px);  
+    float:right;
+    
+}
+.graph h3{
+    background: black;
+    color:white;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.graph img
+{
+    width: 600px;
+    height: 400px; 
+    margin:0;
+    padding:0; 
+}
+.btn-link
+{
+   margin-left: 150px;
+}
+
+.btn-link a
+{
+    
+    padding:10px;
+}

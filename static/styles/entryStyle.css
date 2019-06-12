@@ -1,0 +1,96 @@
+body
+{
+    margin-left: 50px;
+    padding:10px;
+    font-family:sans-serif;
+    background: url(../img/login.jpg);
+    background-size: cover;
+}
+h1{
+    margin:10px 0px;
+    text-align: center;
+    color:white;
+    font-size: 30px;    
+}
+.container{
+    
+    border-bottom:2px solid #c0c0c0;
+    width: 100%;
+    padding: 20px 0px 80px;
+    margin: 8px 0px;
+    overflow: hidden;
+    
+}
+.container h3
+{
+    overflow:hidden;
+    font-size:20px;
+    color: white;
+}
+.container input
+{
+    padding:10px 0px;
+    margin:20px auto 5px;
+    overflow: hidden;
+    outline:snow;
+    background: none;
+    font-size: 15px;
+    color: white;   
+}
+#ques 
+{
+    width:600px;
+}
+.q-text,.q-params
+{
+    overflow: hidden; /*to maintain <div class=q-params> height property*/
+}
+.q-params input,.q-text input
+{
+    width:180px;
+    margin:5px;
+    float:left;
+}
+.q-text input, .q-params input, .q-options input{
+    
+    border:none;
+    border-bottom: 1px solid #a7f442;
+}
+.btn{
+    margin: 15px -2px;
+    text-align: center;
+    height: 35px;
+}
+.btn input{
+    
+    width: 200px;
+    font-weight: 600;
+}
+h4{
+    color:white;
+    
+}
+
+#footer
+{
+    color:white;
+    padding: 5px;
+    margin : 5px 0px;
+    font-weight: 600;
+    text-align: center;
+}
+.home-btn
+{
+    color:white solid;
+    
+    font-weight: 450;
+    border: 2.0px solid whitesmoke ;
+    padding:10px 45px;
+    margin: 10px 30px;
+}
+.btn a 
+{
+    font-size:14px;
+    text-decoration: none;
+    color:white;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../static/styles/signUp.css">
+   <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous"> --> 
+    <title>User Registration</title>
+</head>
+<body>
+        <div class="registration">
+            <h1>Admin Registration</h1>
+            
+            <form method="POST">
+                <div class='user-personal-info'>
+                        <h3>Full Name</h3>
+                        <!-- <i class="fa fa-user-tie" aria-hidden="true"></i> -->
+                        <input type ="text" placeholder=" Eg: Arindam Roy" name="name" value="">
+                </div>
+                <div class='user-personal-info'>
+                        <h3>Department</h3>
+                    <!--<i class="fas fa-venus-mars" aria-hidden="true"></i> --> 
+                        <input list="user-dept" placeholder="Choose Department" name="dept">
+                            <datalist id="user-dept">
+                                <option value="Cmputer Science">
+                                <option value="Mathematics">
+                                <option value="English">
+                            </datalist>
+                </div>
+                <div class='user-personal-info'>
+                        <h3>Registration Number</h3>
+                        <input type="text" placeholder="Registration number" name="reg" value="">
+                </div>
+                    <div class='user-personal-info'>
+                        <h3>Username</h3>
+                        <input type="text" placeholder="Eg: John" name="username" value="">
+                    </div>
+                    <div class='user-personal-info'>
+                        <h3>Enter Password</h3>
+                        <input type="password" placeholder="At least 8 characters long" name="password1" value="">
+                    </div>
+                    <div class='user-personal-info'>
+                        <h3>Confirm Password</h3>
+                        <input type="password" placeholder="Re-type password" name="password2" value="">
+                    </div>
+                    {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                    {% for message in messages %}
+                        <li>{{ message }} </li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+                    <div class='btn-pane'>
+                            <input class="btn" type="submit" value="Submit">
+                            <a class="home-btn" type="button" href="login">Back</a>
+                    </div>
+            </form>
+        </div>
+        <footer id="footer">
+            &copy;QuizSmart Learning Platform
+        </footer>    
+</body>
+</html>

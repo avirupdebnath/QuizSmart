@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+.body
+{
+    font-family:'Poppins',sans-serif;
+    background:url("./login.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+    
+}
+.container
+{
+    
+    margin: 20px 20px;
+    padding: 20px 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: #333333
+}
+.img
+{
+    
+    margin: 100px 250px 100px 250px;
+    top:50%;
+    left:50%;
+    
+}
+#q-bank-img
+{
+    margin-left:130px;   
+    margin-bottom:0px;        
+    width: 300px ;
+    height: 250px;
+    outline:none;
+    
+}
+#msg
+{
+    margin: 0 0 0 0;   
+    background: #c4f2e0;
+    border-radius: 10px;
+    color:black;
+}
+#msg h1
+{
+    text-align: center;
+    margin:20px;
+    padding:20px;
+}
+#footer
+{
+    text-align: center;
+    font-weight: 800;
+    font-size: 18px;
+    background: black;
+    color: white;
+}
+.button {
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+}
+#btn-link
+{
+    margin-left: 330px;
+    margin-right:300px;
+    position: relative;
+
+
+}
+#btn-link a
+{
+    width:180px;
+    margin: 10px 10px;
+    padding: 10px 10px;   
+}
+
+  

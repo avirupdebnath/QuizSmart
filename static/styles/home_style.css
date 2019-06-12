@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+body{
+    font-family: 'Poppins', sans-serif;
+    margin:0px;
+    padding:0px;
+    background:url(../img/back.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+header{
+    position: relative;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.container{
+    overflow:hidden;
+}
+.head
+{
+    color: #000000;
+    height: 60px;
+    font-size: 36px;
+    line-height:60px;
+    margin: 10px;
+    padding: 0 20px;
+    background: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+    float:left;
+    font-weight: 700;
+    text-decoration: none;
+}
+nav{
+
+    float:right;
+    overflow: hidden;
+    
+}
+/*.clearfix
+{
+    clear:both;
+}*/
+nav ul
+{
+    margin:10px;
+    padding:5px;
+    
+    list-style:none;
+    display: block;
+    
+}
+nav ul li{
+    font-size: 18px;
+    float:left;
+    list-style: none ;
+    
+       
+}
+nav ul li a
+{
+    display:block; /* to enable cursor over entire a element */
+    margin:5px 5px;
+    padding:5px 20px;
+    text-decoration: none;
+    color: #262626;
+}
+nav ul li ul li{
+    display:none;    
+    clear:both;
+    
+    
+}
+nav ul li:hover ul li
+{
+    display:block;
+    clear: both;
+    
+    
+}
+
+nav ul li a.active, nav ul li a:hover
+{
+    background: #000000;
+    color:#fff;
+    transition: 0.5s;
+}
+
+.content{
+    margin: 20px 80px;
+    padding: 20px 15px;
+    border: none;
+    border-radius: 6px;
+    background: white;
+    overflow: hidden;
+    opacity: 2;   
+}
+.quiz-desc
+{
+    width: 500px;
+    margin: 20px 20px;
+    padding: 0;
+    float:left;
+    
+}
+.quiz-mascot img
+{
+    float:right;
+    width: 400px;
+    height: 400px;
+    margin-right:50px;
+    opacity:2;
+    
+}
+.reg-btn
+{
+    color: #ffffff;
+    background: black;
+    border:6px solid #0099CC;
+    border-radius:6px;
+    border:none;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.reg-btn a
+{
+    text-decoration:none;
+    color:white;
+}
+.reg-btn:hover
+{
+    background: #2079b0;
+    background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
+    background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
+    background-image: -ms-linear-gradient(top, #2079b0, #eb94d0);
+    background-image: -o-linear-gradient(top, #2079b0, #eb94d0);
+    background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
+    text-decoration: none;
+}
+.features{
+    background: #2972e8;
+    color:black;
+    margin: 20px 80px;
+    padding: 20px 15px;
+    border: none;
+    border-radius: 6px;
+    background: white;
+    overflow: hidden;
+    opacity: 1;
+}
+.feature-1,.feature-2,.feature-3
+{
+    width:300px;
+    height: 250px;
+}
+.feature-1:hover, .feature-2:hover,.feature-3:hover
+{
+    background: black;
+    color:white;
+    cursor: pointer;
+}
+.feature-1,.feature-2,.feature-3
+{
+    text-align: center;
+    margin:10px 15px;
+    padding: 20px;
+    border: 6px solid black;
+    border-radius: 6px;
+    float:left;
+
+}
+.features h1,h3
+{
+
+    text-align: center;
+}
+.feature-desc-1,.feature-desc-2,.feature-desc-3
+{
+    padding: 5px;
+}

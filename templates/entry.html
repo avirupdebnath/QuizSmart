@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../static/styles/entryStyle.css">
+    <title>Question Entry</title>
+    
+</head>
+<body>
+    <h1>QUESTION ENTRY PAGE</h1>
+    <div class="container">
+        <form id ="q-form" method="POST" name="vform">    
+            <div class="q-text">
+                <h3>Question</h3>
+                <input type="text" placeholder="Enter Subject Code" name="subjectCode" value="">
+                <div id="sub-id-error" class="val error"></div>
+                
+                <input id="ques" type="text" placeholder="Enter Question text" name="question" value="">
+                <div id="q-text-error" class="val error"></div>
+            </div>
+            <div class="q-options">
+                <h3>Options</h3>
+                <input type="text" placeholder="Option1" name="option1" value="">
+
+                <input type="text" placeholder="Option2" name="option2" value="">
+
+                <input type="text" placeholder="Option3" name="option3" value="">
+
+                <input type="text" placeholder="Option4" name="option4" value="">
+
+                <div class="q-ans">
+                    <h3> Correct Answer</h3>
+                    <input type="number" placeholder="1-4" min="1" max="4" name="correctOption">  
+                    <div id="correct-ans"></div>
+                </div>
+            </div>
+            <div class="q-params">
+                <h3>Parameters</h3>
+                <input type="number" placeholder="Difficulty" name="difficulty" min="0" max="10">
+                <div class="diff_error"></div>
+                <input type="number" placeholder="Guess" name="guess" min="0" max="10">
+                <div class="param error"></div>
+                <input type="number" placeholder="Discrimination" name="discrimination" min="0" max="10">
+                <div class="param error"></div>
+            </div>
+            
+            <div class="btn">
+                <a class="home-btn" type="button" href="admin">BACK</a>
+                <input type="submit" id="submit-btn" value="SUBMIT">
+                
+            </div>
+        </form>   
+    </div>
+    <footer id="footer">
+        &copy;QuizSmart Learning Platform
+    </footer>
+</body>
+</html>
