@@ -142,16 +142,16 @@ def signAdminUp():
 
 @app.route("/student_landing")
 def student_landing():
-    conn = lite.connect('question.db')
-    c = conn.cursor()
+    #conn = lite.connect('question.db')
+    #c = conn.cursor()
     global ability_lis
     ability_lis=[]
     global qcount
     qcount=0
     global stuName
-    with conn:
-        c.execute('''UPDATE QuestionBank SET Answered = 0''')
-    conn.close()
+    #with conn:
+     #   c.execute('''UPDATE QuestionBank SET Answered = 0''')
+    #conn.close()
     return render_template('student_landing.html',username=stuName)
 
 
