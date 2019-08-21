@@ -6,7 +6,7 @@ import sqlite3 as lite
 import sys
 import io
 import base64
-import pypyodbc
+import pyodbc
 
 app = Flask(__name__)
 app.secret_key="random string"
@@ -52,7 +52,7 @@ def checkNLogUser():
     global stuName
     stuName=""
     database = 'user'
-    cnxn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+usernameSV+';PWD='+ passwordSV)
+    cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+usernameSV+';PWD='+ passwordSV)
     c = cnxn.cursor()
     username = request.form['username']
     password = request.form['password']
@@ -97,7 +97,7 @@ def admin_sign_up():
 @app.route("/sign_up", methods=['POST'])
 def signUserUp():
     database = 'user'
-    cnxn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+usernameSV+';PWD='+ passwordSV)
+    cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+usernameSV+';PWD='+ passwordSV)
     name = str(request.form['name'])
     gender = str(request.form['sex'])
     email = str(request.form['email'])
