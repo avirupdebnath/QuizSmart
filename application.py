@@ -17,11 +17,12 @@ server = 'quicksmartsv.database.windows.net'
 driver= '{ODBC Driver 17 for SQL Server}'
 usernameSV = 'avirup'
 passwordSV = 'Singapore404'
+database = 'quicksmartdb'
+cnxn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+usernameSV+';PWD='+ passwordSV)
+c = cnxn.cursor()
 stuName=""
 
 def generateQuestion(ability, subjectCode):
-    conn = lite.connect('question.db')
-    c = conn.cursor()
     # Contents of all columns for row that match a certain value in 1 column and then randomly selecting one out of them
     c.execute('SELECT * FROM QuestionBank WHERE ( AggregateParameter >= {n1} AND AggregateParameter <= {n2} AND SubjectCode == "{n3}" AND Answered == 0) ORDER BY RANDOM() LIMIT 1'.\
         format( n1 = ability-1, n2 = ability+1, n3=subjectCode ))
@@ -29,10 +30,10 @@ def generateQuestion(ability, subjectCode):
     print (ability)
     print (ability_lis)
     print(fetchQuestion[0][11])
-    with conn:
+    with cnxn:
         c.execute('''UPDATE QuestionBank SET Answered = ? WHERE id = ?''', (int(1), int(fetchQuestion[0][0])))
     # Closing the connection to the database file
-    conn.close()
+    #cnxn.close()
     return fetchQuestion
 
 @app.route("/")
@@ -51,9 +52,7 @@ def admin():
 def checkNLogUser():
     global stuName
     stuName=""
-    database = 'user'
-    cnxn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+usernameSV+';PWD='+ passwordSV)
-    c = cnxn.cursor()
+    #cnxn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+usernameSV+';PWD='+ passwordSV)
     username = request.form['username']
     password = request.form['password']
     print(username , password)
@@ -62,16 +61,16 @@ def checkNLogUser():
     if(row_count!=0):
         fetchUser = c.fetchall()
         stuName=fetchUser[0][1]
-        cnxn.close()
+        #cnxn.close()
         return redirect(url_for('student_landing'))
     else:
-        cnxn.close()
+        #cnxn.close()
         return redirect(url_for('login'))
 
 @app.route("/admin",methods=['POST'])
 def checkNLogAdmin():
-    admin = lite.connect('user.db')
-    c = admin.cursor()
+    #admin = lite.connect('user.db')
+    #c = admin.cursor()
     username = request.form['username']
     password = request.form['password']
     print(username , password)
@@ -79,7 +78,7 @@ def checkNLogAdmin():
         format( n1 = username ))
     fetchUser = c.fetchall()
     if(password==fetchUser[0][5]):
-        admin.close()
+        #admin.close()
         return redirect(url_for('entry'))
     else:
         admin.close()
@@ -95,8 +94,8 @@ def admin_sign_up():
 
 @app.route("/sign_up", methods=['POST'])
 def signUserUp():
-    database = 'user'
-    cnxn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+usernameSV+';PWD='+ passwordSV)
+    #database = 'user'
+    #cnxn = pypyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+usernameSV+';PWD='+ passwordSV)
     name = str(request.form['name'])
     gender = str(request.form['sex'])
     email = str(request.form['email'])
@@ -105,17 +104,17 @@ def signUserUp():
     password0 = str(request.form['password2'])
     print (name,gender,email,username,password,password0)
     if(password==password0):
-        c1 = cnxn.cursor()
-        c1.execute("if not exists (select * from sysobjects where name='UserDetails' and xtype='U')create table UserDetails (Id INT IDENTITY(1,1) PRIMARY KEY, Name TEXT, Gender TEXT, Email TEXT, Username TEXT, Password TEXT)")
+        #c1 = cnxn.cursor()
+        #c.execute("if not exists (select * from sysobjects where name='UserDetails' and xtype='U')create table UserDetails (Id INT IDENTITY(1,1) PRIMARY KEY, Name TEXT, Gender TEXT, Email TEXT, Username TEXT, Password TEXT)")
         
         #c1.execute("CREATE TABLE IF NOT EXISTS UserDetail(Id INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT, Gender TEXT, Email TEXT, Username TEXT, Password TEXT )")
-        c1.execute("INSERT INTO UserDetails(Name, Gender, Email, Username, Password) VALUES(?,?,?,?,?)",(name,gender,email,username,password))
+        c.execute("INSERT INTO UserDetails(Name, Gender, Email, Username, Password) VALUES(?,?,?,?,?)",(name,gender,email,username,password))
         cnxn.commit()
-        cnxn.close()
+        #cnxn.close()
         return redirect(url_for('login'))
     else:
         flash("Passwords did not match!") 
-        cnxn.close()
+        #cnxn.close()
         return redirect(url_for('sign_up'))
    
 @app.route("/admin_sign_up", methods=['POST'])
