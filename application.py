@@ -57,9 +57,9 @@ def checkNLogUser():
     password = request.form['password']
     print(username , password)
     SQLcommand="SELECT * FROM UserDetails WHERE username = ? AND password = ? "
-    row_count=c.execute(SQLcommand,[username,password])
-    if(row_count!=0):
-        fetchUser = c.fetchall()
+    c.execute(SQLcommand,[username,password])
+    fetchUser=c.fetchall()
+    if(fetchUser!=[]):
         stuName=fetchUser[0][1]
         #cnxn.close()
         return redirect(url_for('student_landing'))
@@ -74,9 +74,10 @@ def checkNLogAdmin():
     username = request.form['username']
     password = request.form['password']
     print(username , password)
-    SQLcommand=('SELECT * FROM AdminDetails WHERE username = ? AND password = ? ')
-    row_count=c.execute(SQLcommand,[username,password])      
-    if(row_count!=0):
+    SQLcommand='SELECT * FROM AdminDetails WHERE username = ?'
+    c.execute(SQLcommand,[username])  
+    fetchUser = c.fetchall()
+    if(fetchUser != [] and password==fetchUser[0][5]):
         #admin.close()
         return redirect(url_for('entry'))
     else:
@@ -128,7 +129,7 @@ def signAdminUp():
     print (name,dept,reg,username,password,password0)
     if(password==password0):
         #c.execute("CREATE TABLE IF NOT EXISTS AdminDetail(Id INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT, Department TEXT, Registration TEXT, Username TEXT, Password TEXT )")
-        c.execute("INSERT INTO AdminDetails(Name, Department, Registration, Username, Password) VALUES(?,?,?,?,?)",(name,dept,reg,username,password))
+        c.execute("INSERT INTO AdminDetail(Name, Department, Registration, Username, Password) VALUES(?,?,?,?,?)",(name,dept,reg,username,password))
         cnxn.commit()
         return redirect(url_for('admin'))
     else:
