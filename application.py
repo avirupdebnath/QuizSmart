@@ -24,17 +24,23 @@ stuName=""
 
 def generateQuestion(ability, subjectCode):
     # Contents of all columns for row that match a certain value in 1 column and then randomly selecting one out of them
-    c.execute('SELECT * FROM QuestionBank WHERE ( AggregateParameter >= {n1} AND AggregateParameter <= {n2} AND SubjectCode == "{n3}" AND Answered == 0) ORDER BY RANDOM() LIMIT 1'.\
-        format( n1 = ability-1, n2 = ability+1, n3=subjectCode ))
+    print("generating question")
+    c.execute('SELECT TOP 1 * FROM QuestionBank WHERE ( AggregateParameter >= ? AND AggregateParameter <= ? AND SubjectCode = ? AND Answered = 0) ORDER BY NEWID()',[(ability-1),(ability+1),(subjectCode)])
     fetchQuestion = c.fetchall()
-    print (ability)
-    print (ability_lis)
-    print(fetchQuestion[0][11])
-    with cnxn:
-        c.execute('''UPDATE QuestionBank SET Answered = ? WHERE id = ?''', (int(1), int(fetchQuestion[0][0])))
-    # Closing the connection to the database file
-    #cnxn.close()
-    return fetchQuestion
+    print("query successful")
+    print(fetchQuestion)
+    if(fetchQuestion!=[]):
+        print ("question fetched")
+        print (ability)
+        print (ability_lis)
+        print(fetchQuestion[0][11])
+        c.execute("UPDATE QuestionBank SET Answered = ? WHERE id = ?", (int(1), int(fetchQuestion[0][0])))
+        # Closing the connection to the database file
+        cnxn.commit()
+        #cnxn.close()
+        return fetchQuestion
+    else:
+        return []
 
 @app.route("/")
 def home():
@@ -129,7 +135,7 @@ def signAdminUp():
     print (name,dept,reg,username,password,password0)
     if(password==password0):
         #c.execute("CREATE TABLE IF NOT EXISTS AdminDetail(Id INTEGER PRIMARY KEY AUTOINCREMENT,Name TEXT, Department TEXT, Registration TEXT, Username TEXT, Password TEXT )")
-        c.execute("INSERT INTO AdminDetail(Name, Department, Registration, Username, Password) VALUES(?,?,?,?,?)",(name,dept,reg,username,password))
+        c.execute("INSERT INTO AdminDetails(Name, Department, Registration, Username, Password) VALUES(?,?,?,?,?)",(name,dept,reg,username,password))
         cnxn.commit()
         return redirect(url_for('admin'))
     else:
@@ -147,7 +153,9 @@ def student_landing():
     qcount=0
     global stuName
     #with conn:
-     #   c.execute('''UPDATE QuestionBank SET Answered = 0''')
+    c.execute("update QuestionBank set Answered=0")
+    cnxn.commit()
+    print("1")
     #conn.close()
     return render_template('student_landing.html',username=stuName)
 
@@ -158,8 +166,8 @@ def entry():
 
 @app.route("/entry",methods=['POST'])
 def addQuestionToBank():
-    
-    db = lite.connect('question.db')
+
+    #db = lite.connect('question.db')
     subjectCode = request.form['subjectCode']
     question = request.form['question']
     option1 = request.form['option1']
@@ -171,13 +179,10 @@ def addQuestionToBank():
     discrim = request.form['discrimination']
     guess = request.form['guess']
     x=aiT.fuzzyBox(diff,discrim,guess)
-
-    with db:
-        cur = db.cursor()    
-        cur.execute("CREATE TABLE IF NOT EXISTS QuestionBank(Id INTEGER PRIMARY KEY AUTOINCREMENT, SubjectCode TEXT, Question TEXT, OptionA TEXT, OptionB TEXT, OptionC TEXT, OptionD TEXT, CorrectOption INT, Difficulty INT, Discrimination INT, Guess INT, AggregateParameter FLOAT, Answered INT)")
-        cur.execute("INSERT INTO QuestionBank(SubjectCode, Question, OptionA, OptionB, OptionC, OptionD, CorrectOption, Difficulty, Discrimination, Guess, AggregateParameter) VALUES(?,?,?,?,?,?,?,?,?,?,?)",(subjectCode,question,option1,option2,option3,option4,correctOption,diff,discrim,guess,x))
     print(x)    
-    db.close()
+    #cur.execute("CREATE TABLE IF NOT EXISTS QuestionBank(Id INTEGER PRIMARY KEY AUTOINCREMENT, SubjectCode TEXT, Question TEXT, OptionA TEXT, OptionB TEXT, OptionC TEXT, OptionD TEXT, CorrectOption INT, Difficulty INT, Discrimination INT, Guess INT, AggregateParameter FLOAT, Answered INT)")
+    c.execute("INSERT INTO QuestionBank(SubjectCode, Question, OptionA, OptionB, OptionC, OptionD, CorrectOption, Difficulty, Discrimination, Guess, AggregateParameter) VALUES(?,?,?,?,?,?,?,?,?,?,?)",[subjectCode,question,option1,option2,option3,option4,correctOption,diff,discrim,guess,x])
+    cnxn.commit()
     return render_template('transition.html')
 
 @app.route("/quiz_ui/<subjectCode>")
@@ -187,20 +192,25 @@ def quiz_ui_get(subjectCode):
     global qcount
     global qlimit
     ability_lis.append(ability)
+    print("about to generate question")
     subjectCode=str(subjectCode)
     fetchQuestion=generateQuestion(ability,subjectCode)
-    questionId = fetchQuestion[0][0]    
-    questionText = fetchQuestion[0][2]
-    option1= fetchQuestion[0][3]
-    option2= fetchQuestion[0][4]
-    option3= fetchQuestion[0][5]
-    option4= fetchQuestion[0][6]
-    correct= fetchQuestion[0][7]
-    correctOption=fetchQuestion[0][correct+2]
-    print (questionId,questionText,option1,option2,option3,option4,correct)
-    qcount+=1
-    return render_template('quiz_ui.html',x=qcount, y=qlimit,question=questionText,option1=option1,option2=option2,option3=option3,option4=option4,ability=ability,correctOption=correctOption,subjectCode=subjectCode)
-   
+    if(fetchQuestion!=[]):
+        questionText = fetchQuestion[0][2]
+        option1= fetchQuestion[0][3]
+        option2= fetchQuestion[0][4]
+        option3= fetchQuestion[0][5]
+        option4= fetchQuestion[0][6]
+        correct= fetchQuestion[0][7]
+        correctOption=fetchQuestion[0][correct+2]
+        qcount+=1
+        return render_template('quiz_ui.html',x=qcount, y=qlimit, question=questionText,option1=option1,option2=option2,option3=option3,option4=option4,ability=ability,correctOption=correctOption,subjectCode=subjectCode)
+    else:
+        print("Trying to generate graph")
+        kI=knowledge_index(ability)
+        ability_lis.pop()
+        return render_template('result.html', graph1=build_graph(range(1,qcount+1),ability_lis),stuName=stuName,kI=kI,subjectCode=subjectCode)
+       
 @app.route("/quiz_ui/<subjectCode>", methods= ['POST','GET'] )
 def quiz_ui_post(subjectCode):
     ability=int(request.form['ability'])
@@ -220,16 +230,23 @@ def quiz_ui_post(subjectCode):
             ability-=1
     ability_lis.append(ability)
     fetchQuestion=generateQuestion(ability,subjectCode)
-    questionText = fetchQuestion[0][2]
-    option1= fetchQuestion[0][3]
-    option2= fetchQuestion[0][4]
-    option3= fetchQuestion[0][5]
-    option4= fetchQuestion[0][6]
-    correct= fetchQuestion[0][7]
-    correctOption=fetchQuestion[0][correct+2]
-    qcount+=1
-    return render_template('quiz_ui.html',x=qcount, y=qlimit, question=questionText,option1=option1,option2=option2,option3=option3,option4=option4,ability=ability,correctOption=correctOption,subjectCode=subjectCode)
-
+    if(fetchQuestion!=[]):
+        print("Question fetched")
+        questionText = fetchQuestion[0][2]
+        option1= fetchQuestion[0][3]
+        option2= fetchQuestion[0][4]
+        option3= fetchQuestion[0][5]
+        option4= fetchQuestion[0][6]
+        correct= fetchQuestion[0][7]
+        correctOption=fetchQuestion[0][correct+2]
+        qcount+=1
+        return render_template('quiz_ui.html',x=qcount, y=qlimit, question=questionText,option1=option1,option2=option2,option3=option3,option4=option4,ability=ability,correctOption=correctOption,subjectCode=subjectCode)
+    else:
+        print("Trying to generate graph")
+        kI=knowledge_index(ability)
+        ability_lis.pop()
+        return render_template('result.html', graph1=build_graph(range(1,qcount+1),ability_lis),stuName=stuName,kI=kI,subjectCode=subjectCode)
+       
 def build_graph(x_coordinates, y_coordinates):
     img = io.BytesIO()
     plt.plot(x_coordinates, y_coordinates)
@@ -250,13 +267,15 @@ def knowledge_index(ability):
     else:
          return "Poor"
 def graph():
-    x=[1,2,3,4,5]
+    x=list (range(1,qcount))
+    print(x)
+    print(ability_lis)
     plt.plot(x,ability_lis)
     # naming the x axis 
     plt.xlabel('Question No.') 
     # naming the y axis 
     plt.ylabel('Ability') 
-    plt.xlim(1,5,1) 
+    plt.xlim(1,qcount,1) 
     
     # giving a title to my graph 
     plt.title('Ability Flow') 
