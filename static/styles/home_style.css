@@ -5,7 +5,6 @@ body{
     margin:0px;
     padding:0px;
     max-width: 500px;
-    box-sizing: border-box;
     background:url(../img/back.jpg);
     background-size: cover;
     background-attachment: fixed;
